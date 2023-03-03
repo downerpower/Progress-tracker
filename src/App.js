@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import Section from './components/Section';
 
 function App() {
+  const Title = styled.h1`
+  font-family: sans-serif;
+  color: #b19cd9;
+`;
+
+  const WEEKDAYS = [{ day: 'M', progress: 70 }, { day: 'T', progress: 30 }, { day: 'W', progress: 50 }, { day: 'T', progress: 90 }, { day: 'F', progress: 10 }, { day: 'S', progress: 80 }, { day: 'S', progress: 60 }];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Title>Progress Tracker</Title>
+      <div>
+        {WEEKDAYS.map(day => <Section key={day.progress} weekday={day.day} weekend={day.day === 'S' && true} progressValue={day.progress} />)}
+      </div>
+    </>
   );
 }
 
